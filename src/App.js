@@ -1,8 +1,21 @@
+
 import styled, {keyframes} from "styled-components";
+
+const Wrapper = styled.div`
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => props.theme.backgroundColor};
+`;
+
+
 
 // component 만들기
 const Father = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Text = styled.div`
@@ -24,7 +37,7 @@ const Circle = styled(Rect)`
 
 const Btn = styled.button`
   color: white;
-  background-color: tomato;
+  background-color: ${(props) => props.bgColor};
   border: 0;
   border-radius: 15px;
 `;
@@ -50,6 +63,10 @@ const rotationAnimation = keyframes`
   }
 `;
 
+const Emoji = styled.span`
+  font-size: 36px;
+`;
+
 const Box = styled.div`
   width: 200px;
   height: 200px;
@@ -57,11 +74,10 @@ const Box = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: ${rotationAnimation} 1s linear infinite;
-  span {
-    font-size: 36px;
+  /* animation: ${rotationAnimation} 1s linear infinite; */
+  ${Emoji} {
     &:hover {
-      font-size: 50px;
+      font-size: 98px;
     }
     // click 상태이면 변경되는 옵션
     &:active {
@@ -70,9 +86,18 @@ const Box = styled.div`
   }
 `;
 
+
+const Title = styled.h1`
+  color: ${props => props.theme.textColor};
+`;
+
+
 function App() {
   return (
-    <div>
+    <Wrapper>
+
+      <Title>styled-components 시작하기</Title>
+
       ** component 만들기 및 확장하기
       <Father>
         <Rect bgColor="teal">
@@ -86,8 +111,8 @@ function App() {
 
       ** as를 이용해서 btn 태그 a 태그로 변경
       <div>
-        <Btn>Button</Btn>
-        <Btn as="a" href="#">A Link</Btn>
+        <Btn bgColor="teal">Button</Btn>
+        <Btn bgColor="tomato" as="a" href="#">A Link</Btn>
       </div>
       <br />
 
@@ -103,10 +128,11 @@ function App() {
       ** animation 추가
       <Father>
         <Box bgColor="tomato">
-          <span>😀</span>
+          <Emoji as="p">😀</Emoji>
         </Box>
+        <Emoji>🔥</Emoji>
       </Father>
-    </div>
+    </Wrapper>
   );
 }
 
